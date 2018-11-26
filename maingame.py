@@ -2,11 +2,12 @@
 # Version 1
 
 #------ IMPORT ----------
-
 from helpers import *
 from player import Player
 from pptree import *
 import time
+import sys
+
 
 #------ GLOBAL VARS -------
 
@@ -39,7 +40,6 @@ def create_main_menu():
         exit_game()
     else:  # default ##
         print ("Invalid number. Try again...")
-
 
 def start_game():
     # clear the screen for a better UI
@@ -78,13 +78,11 @@ def player_select_skill_tree():
     print_text_fancily (' - Now, your journey cannot begin without some skills. \n')
     print_text_fancily (' - Which skill tree do you want?')
 
-
-
 def load_game():
     print ("Loading up your game files...")
 
 def exit_game():
     print ("Bye Bye ...")
 
-
-create_main_menu()
+if __name__ == "__main__":
+    create_main_menu()

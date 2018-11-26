@@ -1,5 +1,10 @@
+#------ IMPORT ----------
+
 import sys
 import time
+
+#------- FUNCTIONS --------
+
 CURSOR_UP_ONE = '\x1b[1A'
 ERASE_LINE = '\x1b[2K'
 TEXT_DELAY = 0.02
