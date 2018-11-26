@@ -1,5 +1,6 @@
 from helpers import *
 from Stats import *
+from avatars import SoldierAvatar
 
 
 class Player:
@@ -7,43 +8,23 @@ class Player:
         self.name = name
         self.skill_tree = None
         self.skill_point = 0
-        self.stats = Stats(1,1,10,0.1, 0.5)
-        self.shape = (r"""
- _   _   _   _+       |
-/_`-'_`-'_`-'_|  \+/  |
-\_`M'_`D'_`C'_| _<=>_ |
-  `-' `-' `-' 0/ \ / o=o
-              \/\ ^ /`0
-              | /_^_\
-              | || ||
-            __|_d|_|b__
-
-                """)
+        self.stats = Stats(1, 1, 10, 0.1, 0.5)
+        self.avatar = SoldierAvatar()
+        # A list of effects and modifiers that the player is currently affected with during combat
+        # Format is {(modifier_name, modifer_effect,number_of_turns)}. i.e {modify_hp,10,3}
+        self.affected_combat_modifiers = []
 
     def __str__(self):
         return (self.draw_player_avatar())
 
     def draw_player_avatar(self):
-        print("-" * 30)
-        print()
-        print('#--- P L A Y E R - A V A T A R ---#')
-        print()
-        shape_by_line = self.shape.split('\n')
-        for a_line in shape_by_line:
-            print_text_fancily(a_line, 0.005, False)
-        return self.shape
+        print_title_fancily(None, "player avatar")
+        self.avatar.show_avatar()
 
     def draw_player_skill_tree(self):
         self.skill_tree.show()
 
     def show_player_stats(self):
-        print("-" * 30)
-        print()
-        print('#--- P L A Y E R - S T A T S ---#')
-        print()
-        print("-- Damage: {}".format(self.stats['dmg']))
-        print("-- Defense: {}".format(self.stats['defense']))
-        print("-- HP: {}".format(self.stats['hp']))
-        print("-- Evasion: {}".format(self.stats['evasion']))
-        print("-- Accuracy: {}".format(self.stats['accuracy']))
+        print_title_fancily(None, "player stats")
+        self.stats.print_all_stats()
         print()
