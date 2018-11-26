@@ -1,4 +1,4 @@
-from helpers import *
+from helpers import print_text_fancily
 from Stats import *
 from avatars import SoldierAvatar
 
