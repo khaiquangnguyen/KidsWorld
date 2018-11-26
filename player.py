@@ -1,5 +1,5 @@
 from helpers import *
-from pptree import *
+from Stats import *
 
 
 class Player:
@@ -7,13 +7,7 @@ class Player:
         self.name = name
         self.skill_tree = None
         self.skill_point = 0
-        self.stats = {
-            'dmg': 2,
-            'defense': 1,
-            'hp': 10,
-            'evasion': 0.1,
-            'accuracy': 100,
-        }
+        self.stats = Stats(1,1,10,0.1, 0.5)
         self.shape = (r"""
  _   _   _   _+       |
 /_`-'_`-'_`-'_|  \+/  |
