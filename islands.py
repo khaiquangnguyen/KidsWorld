@@ -1,6 +1,6 @@
 from helpers import print_title_fancily
 from shapes import MATH_PARADISE_ISLAND
-
+from Items import *
 islands = ["MathParadise", "HistoryField"]
 
 
@@ -63,8 +63,10 @@ def create_math_island():
     # add buildings to MathParadise
     mapmaker = Mapmaker(MathParadise)
     marketplace = Marketplace(MathParadise)
+    bot_vendor = Vendor(
+        "Poor Student", [Pencil, Notebook, Eraser, Laptop, Calculator, RunningShoes])
     MathParadise.buildings = [mapmaker, marketplace]
     return MathParadise
-
+ 
 
 MathParadise = create_math_island()

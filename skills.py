@@ -108,7 +108,6 @@ PassiveStatModifer = namedtuple("PassiveStatModifer", 'modifer value')
 
 MathSoul = TreeSoul("The Essence Of Mathematics", 1)
 Geometry = TreeSoul("The Beauty of Geometry", 1)
-ActiveSkill()
 Integral = ActiveSkill("Integral", 5, 90, 3, [],
                        "Overwhelm the opponent with a difficult integral, dealing fatal damage.")
 Addition = ActiveSkill("Addition", 20, 90, 1, [StatsModifier("self", '+defense', 1, 5)],
