@@ -2,11 +2,10 @@
 # Version 1
 
 # ------ IMPORT ----------
-from helpers import *
+from helpers import print_text_fancily, clear_screen, print_title_fancily
 from player import Player
-from pptree import *
-from skilltrees import *
-from islands import *
+from skills import Math_Tree
+from islands import WORLD_MAP, islands, MathParadise
 import time
 import sys
 
@@ -68,7 +67,7 @@ def get_player_name():
     player = Player(player_name)
     print_text_fancily(" - That's a cool name, %s! " % player_name)
     print_text_fancily(' - This will be your avatar from now on. \n')
-    player.draw_player_shape()
+    player.draw_player_avatar()
     print_text_fancily(' - Looking not too shabby, huh? \n')
     time.sleep(0.5)
     print()
@@ -83,7 +82,7 @@ def player_select_skill_tree():
         ' - Now, your journey cannot begin without some skills. \n')
     print_text_fancily(' - Which skill tree do you want?')
     time.sleep(0.5)
-    skill_tree = create_math_skill_tree()
+    skill_tree = Math_Tree
     skill_tree.show()
     print(30 * '-', "\n")
     print("1. Select Math Tree")
@@ -106,66 +105,39 @@ def show_character_confirmation():
     print_text_fancily(
         "- Now, let's check your character again before we start our journey...")
     global player
-    choice = input('Press any key to show the avatar of the player ...')
-
+    input('Press any key to show the avatar of the player ...')
     player.draw_player_avatar()
-    choice = input('Press any key to show the skill tree ...')
+    input('Press any key to show the skill tree ...')
     player.draw_player_skill_tree()
-    choice = input('Press any key to show the stats of the character ...')
+    input('Press any key to show the stats of the character ...')
     player.show_player_stats()
+    time.sleep(1)
     print_text_fancily(" - Everything seems fine! Let the journey begins!")
+    input('Press any key to begin your yourney ...')
     begin_journey()
 
 
 def begin_journey():
     clear_screen()
-    map = r"""
-                  ,_   .  ._. _.  .
-           , _-\','|~\~      ~/      ;-'_   _-'     ,;_;_,    ~~-
-  /~~-\_/-'~'--' \~~| ',    ,'      /  / ~|-_\_/~/~      ~~--~~~~'--_
-  /              ,/'-/~ '\ ,' _  , '|,'|~                   ._/-, /~
-  ~/-'~\_,       '-,| '|. '   ~  ,\ /'~                /    /_  /~
-.-~      '|        '',\~|\       _\~     ,_  ,               /|
-          '\        /'~          |_/~\\,-,~  \ "         ,_,/ |
-           |       /            ._-~'\_ _~|              \ ) /
-            \   __-\           '/      ~ |\  \_          /  ~
-  .,         '\ |,  ~-_      - |          \\_' ~|  /\  \~ ,
-               ~-_'  _;       '\           '-,   \,' /\/  |
-                 '\_,~'\_       \_ _,       /'    '  |, /|'
-                   /     \_       ~ |      /         \  ~'; -,_.
-                   |       ~\        |    |  ,        '-_, ,; ~ ~\
-                    \,      /        \    / /|            ,-, ,   -,
-                     |    ,/          |  |' |/          ,-   ~ \   '.
-                    ,|   ,/           \ ,/              \       |
-                    /    |             ~                 -~~-, /   _
-                    |  ,-'                                    ~    /
-                    / ,'                                      ~
-                    ',|  ~
-                      ~'
-                      """
-
     print_title_fancily("world map")
-    shape_by_line = map.split('\n')
+    shape_by_line = WORLD_MAP.split('\n')
     for a_line in shape_by_line:
-        print_text_fancily(a_line, 0.002, False)
-    time.sleep(1)
+        print(a_line)
+        time.sleep(0.05)
+    time.sleep(0.5)
     print_text_fancily("- Now, let's select a place to explore... \n")
     for i in range(len(islands)):
         print(f'{(i+1):d}. Go to {islands[i]}')
     choice = input('Enter your choice [1-{}] : '.format(len(islands)))
-
     ### Convert string to int type ##
     choice = islands[int(choice) - 1]
-    globals()["explore_{}".format(choice)]()
+    explore_island(choice)
 
 
-def explore_MathParadise():
+def explore_island(island_name):
     clear_screen()
-    print_title_fancily("Math Paradise", "A paradise for math nerds.")
-
-
-def explore_HistoryField():
-    print("history")
+    island = globals()[island_name]
+    island.show_island_name()
 
 
 def load_game():
@@ -178,11 +150,12 @@ def exit_game():
 
 def create_test_char():
     global player
-    skill_tree = create_math_skill_tree()
+    skill_tree = Math_Tree
     player = Player("khai")
     player.skill_tree = skill_tree
 
 
 if __name__ == "__main__":
     create_test_char()
+    # show_character_confirmation()
     begin_journey()

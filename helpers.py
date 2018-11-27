@@ -14,6 +14,7 @@ CURSOR_UP_ONE = '\x1b[1A'
 ERASE_LINE = '\x1b[2K'
 TEXT_DELAY = 0.02
 
+
 def delete_last_lines(n=1):
     #     for _ in range(n):
     #         # sys.stdout.write(CURSOR_UP_ONE)
@@ -31,7 +32,6 @@ def print_text_fancily(s, delay=TEXT_DELAY, end_with_newline=True):
     for i in range(len(s)):
         print(s[:i], end="\r")
         time.sleep(delay)
-        # delete_last_lines()
     if end_with_newline:
         print(s, "\n")
     else:

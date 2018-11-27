@@ -1,5 +1,5 @@
-from helpers import print_text_fancily
-from Stats import *
+from helpers import print_text_fancily, print_title_fancily
+from Stats import Stats
 from avatars import SoldierAvatar
 
 

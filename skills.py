@@ -1,8 +1,8 @@
 from helpers import print_title_fancily
-
+from pptree import print_tree
 
 STATUS_EFFECTS = ["modify_hp", "modify_defense", "modify_dmg", "modify_evasion",
-                  "modify_accuracy", "modify_crit_chance", "modify_crit_mult"]
+                  "modify_accuracy", "modify_crit_chance", "modify_crit_mult", "modify_hp_regen"]
 ACTIVE_EFFECTS = ["deal_dmg", "deal_dmg_ignore_defense",
                   "deal_dmg_ignore_evasion", "deal_dmg_ignore_accuracy", "deal_dmg_crit", "healing"]
 
@@ -36,13 +36,74 @@ class PassiveSkill(Skill):
         super().__init__(skill_name, "passive", effects, description)
 
 
-class TreeSoul():
+class TreeSoul(Skill):
     def __init__(self, name, maturity):
+        super().__init__(name, "soul", "", "")
         self.name = name
         self.maturity = maturity
 
-# -------  A LIST OF SKILLS -------------#
 
+class SkillTreeNode:
+    def __init__(self, skill, head=None):
+        self.skill = skill
+        self.children = []
+        if head:
+            head.children.append(self)
+
+    def is_empty_node(self):
+        return self.skill == "[]"
+
+    def __str__(self):
+        if self.is_empty_node():
+            return "[      ]"
+        else:
+            return_string = '{}  [{}]: {}'.format(
+                self.skill.type.upper(), self.skill.name, self.skill.description)
+            return return_string
+
+
+class SkillTree:
+    def __init__(self, head):
+        self.head = head
+
+    def get_all_skills(self):
+        if not self.head.is_empty_node() and self.head.children == []:
+            return []
+        else:
+            skills = [self.head.skill]
+            for child in self.head.children:
+                skills.extend(child.get_all_skills())
+            return skills
+
+    def get_all_passive_skills(self):
+        if self.head.children == []:
+            return []
+        else:
+            skills = []
+            if not self.head.is_empty_node() and self.head.skill.type == "passive":
+                skills.extend([self.head.skill])
+            for child in self.head.children:
+                skills.extend(child.get_all_skills())
+            return skills
+
+    def get_all_active_skills(self):
+        if self.head.children == []:
+            return []
+        else:
+            skills = []
+            if self.head.skill.type == "active":
+                skills.extend([self.head.skill])
+            for child in self.head.children:
+                skills.extend(child.get_all_skills())
+            return skills
+
+    def show(self):
+        print_title_fancily(None, "Skill Tree")
+        print_tree(self.head)
+        print()
+
+
+# -------  A LIST OF SKILLS -------------#
 
 MathSoul = TreeSoul("The Essence Of Mathematics", 1)
 Geometry = TreeSoul("The Beauty of Geometry", 1)
@@ -51,22 +112,35 @@ Integral = ActiveSkill("Integral", 5, 90, {"deal_dmg": (3, 0)},
 Addition = ActiveSkill("Addition", 20, 90, {"deal_dmg": (1, 0)},
                        "Force opponent to do mental addition, dealing minor damage.")
 
+QuickCalculation = PassiveSkill("Quick Calculation", {"modify_dmg": (10, -1)},
+                                "Your ability to quickly calculate provides you an edge in battle!")
 
-def create_math_skill_tree():
-    soul = SkillTreeNode("Math Soul", "soul", "Math")
-    hp_branch = SkillTreeNode("Geometry", "Soul", "Boost", soul)
-    hp_max_leaf = SkillTreeNode("Max HP++", "Passive", 0, hp_branch)
-    hp_regen_leaf = SkillTreeNode("HP regen++", "Passive", 0, hp_branch)
-    second_leaf = SkillTreeNode("Dmg ++", "Passive", 4, soul)
-    third_leaf = SkillTreeNode("Crit Chance++", "Passive", "10%", soul)
-    fourth_leaf = SkillTreeNode("Crit Dmg++", "Passive", "50%", soul)
-    active_one = SkillTreeNode("Tackle", "Active",
-                               "Dmg: 10 | Charges: 20 | Accuracy: 100", soul)
-    active_two = SkillTreeNode("Integral", "Active",
-                               "Dmg: 30 | Charges: 5 | Accuracy: 90", soul)
-    empty_slot = Node("[   ]", soul)
-    empty_slot = Node("[   ]", hp_branch)
-    return soul
+Imagination = PassiveSkill("Imagination", {"modify_crit_chance": (10, -1)},
+                           "Imagination helps you doing unimaginable things!")
+DrawingSkill = PassiveSkill("DrawingSkill", {"modify_crit_mult": (0.2, -1)},
+                            "Good drawing skill allows to hit the right spot of a geometry problem easier!")
+
+Meditation = PassiveSkill("Meditation", {"modify_hp_regen": (0.1, -1)},
+                          "Meditation allows you to heal faster outside of battle!")
 
 
-create_math_skill_tree()
+HistorySoul = TreeSoul("The Worth of History", 1)
+Battles = TreeSoul("Knowledge of Battles", 1)
+Short_Term_Memory = PassiveSkill("Short_Term_Memory", {"modify_defense": (1, -1)},
+                                 " Short term memory of opponent's actions allows you to divise effective defense measures")
+Long_Term_Memory = PassiveSkill("Long_Term_Memory", {"modify_evasion": (0.1, -1)},
+                                " Memory of past battles allows you to predict the future.")
+
+# ------ CREATE THE SKILL TREES --------- #
+
+math_root = SkillTreeNode(MathSoul)
+geometry_branch = SkillTreeNode(Geometry, math_root)
+integral_leaf = SkillTreeNode(Integral, math_root)
+addition_leaf = SkillTreeNode(Addition, math_root)
+quick_calculation_leaf = SkillTreeNode(QuickCalculation, math_root)
+imagination_leaf = SkillTreeNode(Imagination, geometry_branch)
+drawing_leaf = SkillTreeNode(DrawingSkill, geometry_branch)
+meditation_leaf = SkillTreeNode(Meditation, math_root)
+empty_1_leaf = SkillTreeNode("[]", math_root)
+empty_2_leaf = SkillTreeNode("[]", geometry_branch)
+Math_Tree = SkillTree(math_root)

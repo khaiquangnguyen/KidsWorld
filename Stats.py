@@ -1,4 +1,4 @@
-from helpers import *
+from helpers import print_text_fancily
 
 
 class Stats:
@@ -8,7 +8,7 @@ class Stats:
 
         # Primary stats
         self.primary_stats = ['dmg', 'defense',
-                              'hp', 'hp_regen', ' charge_restore_rate']
+                              'hp', 'hp_regen', 'charge_restore_rate']
         self.base_dmg = dmg
         # Defense, unit is scalar
         self.base_defense = defense
@@ -88,19 +88,19 @@ class Stats:
         print_text_fancily("Showing Primary Stats ...")
         for i in self.primary_stats:
             s = (' - %s = %d' % (i, getattr(self, i)))
-            print_text_fancily(s)
+            print_text_fancily(s, 0.02, False)
 
     def print_secondary_stats(self):
         print_text_fancily("Showing Secondary Stat ...")
         for i in self.secondary_stats:
             s = (' - %s = %d' % (i, getattr(self, i)))
-            print_text_fancily(s)
+            print_text_fancily(s, 0.02, False)
 
     def print_all_stats(self):
         print_text_fancily("Showing Stats ...")
         for i in (self.primary_stats + self.secondary_stats):
             s = (' - %s = %d' % (i, getattr(self, i)))
-            print_text_fancily(s)
+            print_text_fancily(s, 0.02, False)
 
     def update_stats(self, stat_type, value):
         setattr(value, stat_type, value)
