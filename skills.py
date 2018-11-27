@@ -102,6 +102,7 @@ class SkillTree:
 
 
 StatsModifier = namedtuple('StatsModifer', 'target modifier value num_turn')
+PassiveStatModifer = namedtuple("PassiveStatModifer", 'modifer value')
 
 # -------  A LIST OF SKILLS -------------#
 
@@ -115,23 +116,23 @@ Addition = ActiveSkill("Addition", 20, 90, 1, [StatsModifier("self", '+defense',
 Think = ActiveSkill("Think", 5, 100, 0, [()],
                     "It's always useful to use your brain!")
 
-QuickCalculation = PassiveSkill("Quick Calculation", {"+dmg": (1, -1)},
+QuickCalculation = PassiveSkill("Quick Calculation", [PassiveStatModifer("+dmg", 1)],
                                 "Your ability to quickly calculate provides you an edge in battle!")
 
-Imagination = PassiveSkill("Imagination", {"+crit_chance": (0.1, -1)},
+Imagination = PassiveSkill("Imagination", [PassiveStatModifer("+crit_chance", 0.1)],
                            "Imagination helps you doing unimaginable things!")
-DrawingSkill = PassiveSkill("DrawingSkill", {"+crit_mult": (0.2, -1)},
+DrawingSkill = PassiveSkill("DrawingSkill", [PassiveStatModifer("+crit_mult", 0.2)],
                             "Good drawing skill allows to hit the right spot of a geometry problem easier!")
 
-Meditation = PassiveSkill("Meditation", {"+hp_regen": (0.1, -1)},
+Meditation = PassiveSkill("Meditation", [PassiveStatModifer("+hp_regen", 0.1)],
                           "Meditation allows you to heal faster outside of battle!")
 
 
 HistorySoul = TreeSoul("The Worth of History", 1)
 Battles = TreeSoul("Knowledge of Battles", 1)
-Short_Term_Memory = PassiveSkill("Short_Term_Memory", {"+defense": (1, -1)},
+Short_Term_Memory = PassiveSkill("Short_Term_Memory", [PassiveStatModifer("+defense", 1)],
                                  " Short term memory of opponent's actions allows you to divise effective defense measures")
-Long_Term_Memory = PassiveSkill("Long_Term_Memory", {"+evasion": (0.1, -1)},
+Long_Term_Memory = PassiveSkill("Long_Term_Memory", [PassiveStatModifer("+evasion", 0.1)],
                                 " Memory of past battles allows you to predict the future.")
 
 # ------ CREATE THE SKILL TREES --------- #
