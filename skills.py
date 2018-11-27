@@ -1,10 +1,6 @@
 from helpers import print_title_fancily
 from pptree import print_tree
-
-STATUS_EFFECTS = ["modify_hp", "modify_defense", "modify_dmg", "modify_evasion",
-                  "modify_accuracy", "modify_crit_chance", "modify_crit_mult", "modify_hp_regen"]
-ACTIVE_EFFECTS = ["deal_dmg", "deal_dmg_ignore_defense",
-                  "deal_dmg_ignore_evasion", "deal_dmg_ignore_accuracy", "deal_dmg_crit", "healing"]
+from collections import namedtuple
 
 
 class Skill:
@@ -14,7 +10,6 @@ class Skill:
         # A dictionary of all potential effects of this skill.
         # format is {"modifier_name":(modifer,number_of_turns)}. i.e {"hp":+10,3}
         # For passive skills, the number of turns is -1, implying infinity
-        self.effects = effects
         self.description = description
 
     def get_effects(self):
@@ -25,15 +20,18 @@ class Skill:
 
 
 class ActiveSkill(Skill):
-    def __init__(self, skill_name, base_charge, base_accuracy, effects, description):
-        super().__init__(skill_name, "active", effects, description)
+    def __init__(self, skill_name, base_charge, base_accuracy, dmg, status_effects, description):
+        super().__init__(skill_name, "active", description)
         self.base_charge = base_charge
         self.base_accuracy = base_accuracy
+        self.dmg = dmg
+        self.status_effects = status_effects
 
 
 class PassiveSkill(Skill):
     def __init__(self, skill_name, effects, description):
-        super().__init__(skill_name, "passive", effects, description)
+        super().__init__(skill_name, "passive", description)
+        self.effects = effects
 
 
 class TreeSoul(Skill):
@@ -103,32 +101,37 @@ class SkillTree:
         print()
 
 
+StatsModifier = namedtuple('StatsModifer', 'target modifier value num_turn')
+
 # -------  A LIST OF SKILLS -------------#
 
 MathSoul = TreeSoul("The Essence Of Mathematics", 1)
 Geometry = TreeSoul("The Beauty of Geometry", 1)
-Integral = ActiveSkill("Integral", 5, 90, {"deal_dmg": (3, 0)},
+ActiveSkill()
+Integral = ActiveSkill("Integral", 5, 90, 3, [],
                        "Overwhelm the opponent with a difficult integral, dealing fatal damage.")
-Addition = ActiveSkill("Addition", 20, 90, {"deal_dmg": (1, 0)},
+Addition = ActiveSkill("Addition", 20, 90, 1, [StatsModifier("self", '+defense', 1, 5)],
                        "Force opponent to do mental addition, dealing minor damage.")
+Think = ActiveSkill("Think", 5, 100, 0, [()],
+                    "It's always useful to use your brain!")
 
-QuickCalculation = PassiveSkill("Quick Calculation", {"modify_dmg": (10, -1)},
+QuickCalculation = PassiveSkill("Quick Calculation", {"+dmg": (1, -1)},
                                 "Your ability to quickly calculate provides you an edge in battle!")
 
-Imagination = PassiveSkill("Imagination", {"modify_crit_chance": (10, -1)},
+Imagination = PassiveSkill("Imagination", {"+crit_chance": (0.1, -1)},
                            "Imagination helps you doing unimaginable things!")
-DrawingSkill = PassiveSkill("DrawingSkill", {"modify_crit_mult": (0.2, -1)},
+DrawingSkill = PassiveSkill("DrawingSkill", {"+crit_mult": (0.2, -1)},
                             "Good drawing skill allows to hit the right spot of a geometry problem easier!")
 
-Meditation = PassiveSkill("Meditation", {"modify_hp_regen": (0.1, -1)},
+Meditation = PassiveSkill("Meditation", {"+hp_regen": (0.1, -1)},
                           "Meditation allows you to heal faster outside of battle!")
 
 
 HistorySoul = TreeSoul("The Worth of History", 1)
 Battles = TreeSoul("Knowledge of Battles", 1)
-Short_Term_Memory = PassiveSkill("Short_Term_Memory", {"modify_defense": (1, -1)},
+Short_Term_Memory = PassiveSkill("Short_Term_Memory", {"+defense": (1, -1)},
                                  " Short term memory of opponent's actions allows you to divise effective defense measures")
-Long_Term_Memory = PassiveSkill("Long_Term_Memory", {"modify_evasion": (0.1, -1)},
+Long_Term_Memory = PassiveSkill("Long_Term_Memory", {"+evasion": (0.1, -1)},
                                 " Memory of past battles allows you to predict the future.")
 
 # ------ CREATE THE SKILL TREES --------- #

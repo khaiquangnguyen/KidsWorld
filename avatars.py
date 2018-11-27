@@ -1,4 +1,5 @@
 from helpers import print_text_fancily
+from shapes import SOLDIER
 
 
 class Avatar:
@@ -17,15 +18,4 @@ class Avatar:
 
 class SoldierAvatar(Avatar):
     def __init__(self):
-        shape = (r"""
- _   _   _   _+       |
-/_`-'_`-'_`-'_|  \+/  |
-\_`M'_`D'_`C'_| _<=>_ |
-  `-' `-' `-' 0/ \ / o=o
-              \/\ ^ /`0
-              | /_^_\
-              | || ||
-            __|_d|_|b__
-
-                """)
-        super().__init__(shape)
+        super().__init__(SOLDIER)

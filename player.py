@@ -13,6 +13,19 @@ class Player:
         # A list of effects and modifiers that the player is currently affected with during combat
         # Format is {(modifier_name, modifer_effect,number_of_turns)}. i.e {modify_hp,10,3}
         self.affected_combat_modifiers = []
+        self.gold_coins = 0
+        self.equipments = {
+            "left_hand": None,
+            "right_hand": None,
+            "foot": None,
+            "cape": None,
+            "head": None,
+            "neck": None,
+            "accesories_1": None,
+            "accesories_2": None,
+            "accesories_3": None,
+            "accesories_4": None,
+        }
 
     def __str__(self):
         return (self.draw_player_avatar())
