@@ -2,13 +2,14 @@ from helpers import print_text_fancily
 
 
 class Stats:
-    def __init__(self, dmg, defense, hp, hp_regen, charge_restore_rate, charge_increment_rate=0, evasion=0, accuracy=1, crit_chance=0.1, crit_mult=1.5):
+    def __init__(self, owner, dmg, defense, hp, hp_regen, charge_restore_rate, charge_increment_rate=0, evasion=0, accuracy=1, crit_chance=0.1, crit_mult=1.5):
 
+        # The owner of these stats
+        self.owner = owner
         # base stats, which is the inherent stats of character.
-
         # Primary stats
         self.primary_stats = ['dmg', 'defense',
-                              'hp', 'hp_regen', 'charge_restore_rate']
+                              'hp', 'hp_regen']
         self.base_dmg = dmg
         # Defense, unit is scalar
         self.base_defense = defense
@@ -20,7 +21,7 @@ class Stats:
         self.base_charge_restore_rate = charge_restore_rate
 
         # Secondary stats
-        self.secondary_stats = ['charge_increment_rate',
+        self.secondary_stats = ['charge_restore_rate', 'charge_increment_rate',
                                 'evasion', 'accuracy', 'crit_chance', 'crit_mult']
         # Increase the maximum number of charge rate per skill, unit is percentage. Default is 1
         # i.e 0.1 = 10%
@@ -102,5 +103,19 @@ class Stats:
             s = (' - %s = %d' % (i, getattr(self, i)))
             print_text_fancily(s, 0.02, False)
 
-    def update_stats(self, stat_type, value):
-        setattr(value, stat_type, value)
+    def update_stats_of_owner(self):
+        """
+        Update the stats of the owner. 
+        Assumption is that the owner only gain stats from 
+        predetermined sources such as items and skills
+        """
+        # Get all equipments first
+        items = self.owner.equipments
+        # Get all passive skill next
+        
+
+
+    def update_stats_passive_skill(self,skill):
+
+    def update_stats(self, effects):
+        setattr(self, stat_type, value)

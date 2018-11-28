@@ -2,12 +2,13 @@ from skills import PassiveStatModifer
 
 
 class Item:
-    def __init__(self, name, equipment_slot, description, cost, effects):
+    def __init__(self, name, equipment_slot, description, cost, effects, life_time = 20):
         self.name = name
         self.equipment_slot = equipment_slot
         self.description = description
         self.cost = cost
         self.effects = effects
+        self.life_time = life_time
 
 
 # ------------ ITEM LIST ------------- #

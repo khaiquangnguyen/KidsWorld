@@ -26,6 +26,7 @@ def clear_screen():
     # Works on macs and linux only
     # print('\033[H\033[J')
     os.system('cls')  # For Windows
+    os.system('clear')
 
 
 def print_text_fancily(s, delay=TEXT_DELAY, end_with_newline=True):
