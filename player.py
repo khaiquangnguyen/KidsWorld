@@ -36,27 +36,21 @@ class Equipments:
         self.owner.backpack.add_item(item)
         return item
     
-
-class Backpack:
-    def __init__(self, owner, max_length = 64):
-        self.owner = owner
-        self.items = []
-        self.max_length = max_length
-    
-    def is_full(self):
-        return True if len(self.items) >= self.max_length else False
-
-    def add_item(self, item):
-        if not self.is_full():
-            self.items.append(item)
-
-    def remove_item(self, item):
-        try:
-            item_index = self.items.index(item)
-            self.items = self.items[:item_index] + self.items[item_index+1]
-        except:
+    def swap(self,slot, backpack_slot):
+        item = self.unequip(slot)
+        backpack_item = self.owner.backpack.get_item_by_slot(backpack_slot)
+        # check if we can equip the new item 
+        if self.equip(slot,item) == 1:
+            # add return the item to backpack
+            self.owner.backpack.add_item(item)
+            return 1
+        else:
+            # something goes wrong. Return the item to backpack
+            self.owner.backpack.add_item(backpack_item)
+            self.equip(item)
             return -1
-    
+        
+
 
 
 

@@ -95,3 +95,4 @@ class SkillTreeNode:
 CombatStatsModifier = namedtuple('StatsModifer', 'target modifier value num_turn')
 PassiveStatModifer = namedtuple("PassiveStatModifer", 'modifer value')
 
+
