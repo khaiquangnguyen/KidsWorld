@@ -27,13 +27,13 @@ class Building:
 
 class Marketplace(Building):
     def __init__(self, parent_island=None):
-        super.__init__("marketplace", parent_island)
+        super().__init__("marketplace", parent_island)
         self.vendors = []
 
 
 class Mapmaker(Building):
     def __init__(self, maps=[], parent_island=None):
-        super.__init__("mapmaker", parent_island)
+        super().__init__("mapmaker", parent_island)
         self.maps = maps
 
     def add_map(self, map):
@@ -67,6 +67,6 @@ def create_math_island():
         "Poor Student", [Pencil, Notebook, Eraser, Laptop, Calculator, RunningShoes])
     MathParadise.buildings = [mapmaker, marketplace]
     return MathParadise
- 
+
 
 MathParadise = create_math_island()

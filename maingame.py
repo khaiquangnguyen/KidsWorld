@@ -5,7 +5,8 @@
 from helpers import print_text_fancily, clear_screen, print_title_fancily
 from player import Player
 from skills import Math_Tree
-from islands import WORLD_MAP, islands, MathParadise
+from islands import islands, MathParadise
+from shapes import WORLD_MAP
 import time
 import sys
 
@@ -156,6 +157,7 @@ def create_test_char():
 
 
 if __name__ == "__main__":
-    create_test_char()
+    create_main_menu()
+    # create_test_char()
     # show_character_confirmation()
-    begin_journey()
+    # begin_journey()

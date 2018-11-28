@@ -4,7 +4,7 @@ from collections import namedtuple
 
 
 class Skill:
-    def __init__(self, name, type, effects, description):
+    def __init__(self, name, type, description):
         self.name = name
         self.type = type
         # A dictionary of all potential effects of this skill.
@@ -35,10 +35,11 @@ class PassiveSkill(Skill):
 
 
 class TreeSoul(Skill):
-    def __init__(self, name, maturity):
-        super().__init__(name, "soul", "", "")
+    def __init__(self, name, maturity, description=""):
+        super().__init__(name, "soul", description)
         self.name = name
         self.maturity = maturity
+        self.description = description
 
 
 class SkillTreeNode:
