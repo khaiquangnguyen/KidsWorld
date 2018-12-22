@@ -1,10 +1,10 @@
 from helpers import print_text_fancily
-from shapes import SOLDIER
-
+from shapes import WARRIOR
 
 class Avatar:
-    def __init__(self, shape):
+    def __init__(self, shape, name):
         self.shape = shape
+        self.name = name
 
     def show_avatar(self):
         shape_by_line = self.shape.split('\n')
@@ -15,7 +15,8 @@ class Avatar:
     def __str__(self):
         return self.shape
 
-
-class SoldierAvatar(Avatar):
+class WarriorAvatar(Avatar):
     def __init__(self):
-        super().__init__(SOLDIER)
+        super().__init__(WARRIOR, "warrior")
+
+

@@ -1,5 +1,7 @@
 # ------ IMPORT ----------
 
+import unittest
+
 from termcolor import cprint
 from pyfiglet import figlet_format
 import os
@@ -41,11 +43,10 @@ def print_text_fancily(s, delay=TEXT_DELAY, end_with_newline=True):
 
 def print_title_fancily(title=None, subtitle=None):
     print("-" * 30)
-    print()
     new_s1 = ""
     new_s2 = ""
     if title is not None:
-        title = title.upper()
+        title = title.lower()
         for i in title:
             new_s1 += i + " "
     if subtitle is not None:
@@ -54,15 +55,39 @@ def print_title_fancily(title=None, subtitle=None):
             new_s2 += i + " "
 
     if title and not subtitle:
-        cprint(figlet_format(new_s1, font='small'), attrs=['bold'])
+        cprint(figlet_format(new_s1, font='doom'))
         print("-" * 30)
-        print()
     elif not title and subtitle:
-        print(f'  #--- {new_s2}---#')
-    else:
-        cprint(figlet_format(new_s1, font='small'), attrs=['bold'])
-        print()
-        print(f'  #--- {new_s2}---#')
-        print()
+        print(f'  {new_s2}   ')
         print("-" * 30)
-    print()
+
+    else:
+        cprint(figlet_format(new_s1, font='doom'))
+        print(f'  #--- {new_s2}---#')
+        print("-" * 30)
+
+def calc_mod_value(number, math_string):
+    if math_string[-1] != "%":
+        return eval(math_string)
+    else:
+        return eval(math_string[0] + str(number * eval(math_string[1:-1])/100))
+
+class TestHelper(unittest.TestCase):
+    def test_pure_value(self):
+        self.assertEquals(-10,calc_mod_value(5,"-10"))
+        self.assertEquals(10,calc_mod_value(10,"10"))
+        self.assertEquals(10,calc_mod_value(100,"10"))
+
+    def test_perc_value(self):
+        self.assertEquals(-10,calc_mod_value(100,"-10%"))
+        self.assertEquals(10,calc_mod_value(100,"+10%"))
+
+    def test_calculation(self):
+        mod_value = calc_mod_value(100,"-10%")
+        value = 100 + mod_value
+        self.assertEquals(90,value)
+        mod_value = calc_mod_value(100, "10%")
+        value = 100 + mod_value
+        self.assertEquals(110, value)
+
+

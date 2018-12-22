@@ -3,13 +3,11 @@
 
 # ------ IMPORT ----------
 from helpers import print_text_fancily, clear_screen, print_title_fancily
-from player import Player
+from Player import Player
 from skills import Math_Tree
-from islands import islands, MathParadise
 from shapes import WORLD_MAP
 import time
-import sys
-
+import  unittest
 
 # ------ GLOBAL VARS -------
 
@@ -28,13 +26,8 @@ def create_main_menu():
     print("3. Exit")
     print(30 * '-')
 
-    ## Get input ###
     choice = input('Enter your choice [1-3] : ')
-
-    ### Convert string to int type ##
     choice = int(choice)
-
-    ### Take action as per selected menu-option ###
     if choice == 1:
         start_game()
     elif choice == 2:
@@ -44,50 +37,44 @@ def create_main_menu():
     else:  # default ##
         print("Invalid number. Try again...")
 
-
 def start_game():
     # clear the screen for a better UI
     clear_screen()
     # get the name of the player from input
     get_player_name()
-    print_text_fancily('-' * 30)
-    print_text_fancily(
-        "Now, when you are ready for next step, just press any key...")
-    input("")
     # let the player select the skill tree
     player_select_skill_tree()
 
 
 def get_player_name():
     clear_screen()
-    print_title_fancily("character creation")
+    print_title_fancily(None,"name selection")
     print_text_fancily(" - Hey adventurer, what is your name? ")
     player_name = input(" + My name is [Type in your name here]: ")
     print()
     global player
     player = Player(player_name)
-    print_text_fancily(" - That's a cool name, %s! " % player_name)
-    print_text_fancily(' - This will be your avatar from now on. \n')
-    player.draw_player_avatar()
-    print_text_fancily(' - Looking not too shabby, huh? \n')
+    print_text_fancily(" - Nice to meet you, %s! " % player_name)
     time.sleep(0.5)
-    print()
-
+    clear_screen()
+    print_text_fancily(" - Every knight needs a shiny armor. Please accept it ...")
+    player.draw_player_avatar()
+    time.sleep(1)
+    print_text_fancily(" __ Press any key to accept the armor __ ")
+    input()
 
 def player_select_skill_tree():
     global player
     clear_screen()
-    print_title_fancily("select skilltree")
-
+    print_title_fancily(None, "skill-tree")
     print_text_fancily(
-        ' - Now, your journey cannot begin without some skills. \n')
+        ' - Now, your journey cannot begin without some skills.')
     print_text_fancily(' - Which skill tree do you want?')
-    time.sleep(0.5)
+    time.sleep(1)
     skill_tree = Math_Tree
     skill_tree.show()
     print(30 * '-', "\n")
     print("1. Select Math Tree")
-    ## Get input ###
     choice = input('Enter your choice [1] : ')
     print(30 * '-')
 
@@ -154,7 +141,6 @@ def create_test_char():
     skill_tree = Math_Tree
     player = Player("khai")
     player.skill_tree = skill_tree
-
 
 if __name__ == "__main__":
     create_main_menu()

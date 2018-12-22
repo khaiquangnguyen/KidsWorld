@@ -1,75 +1,78 @@
-from helpers import print_text_fancily
-
-
+from helpers import print_text_fancily, print_title_fancily, calc_mod_value
+import unittest
 class Stats:
-    def __init__(self, owner, dmg, defense, hp, hp_regen, charge_restore_rate, charge_increment_rate=0, evasion=0, accuracy=1, crit_chance=0.1, crit_mult=1.5):
+    """
+    The stat class. Each player has a stat object to manage their stats.
+    There are three types of stats:
 
+     - Combat permanent stats: Permanent stats used in combat
+        + hp (hit point)
+        + dmg (damage)
+        + defs (defense)
+        + spd (speed)
+        + eva (evasion)
+        + acc (accuracy)
+        + crt_chc (crit chance)
+        + crt_mult (crit multiplier)
+
+     - Adventure permanent stats: Permanent stats used during adventure.
+        + hp_reg (hit point regen rate)
+        + chrg_rstr (charge restore rate)
+        + chrg_incr (charge increment rate)
+        + luck
+    """
+    def __init__(self, character):
         # The owner of these stats
-        self.owner = owner
-        # base stats, which is the inherent stats of character.
-        # Primary stats
-        self.primary_stats = ['dmg', 'defense',
-                              'hp', 'hp_regen']
-        self.base_dmg = dmg
-        # Defense, unit is scalar
-        self.base_defense = defense
-        # Hit point, unit is scalar
-        self.base_hp = hp
-        # Hit point regen, unit is percentage/s. . i.e 0.1 = 10%/s
-        self.base_hp_regen = hp_regen
-        # How much charge should be restored, unit is percentage/hr. i.e 0.1 = 10%/hr
-        self.base_charge_restore_rate = charge_restore_rate
+        self.character = character
+        # Combat permanent stats
+        self.combat_perm_stats = ['hp','dmg','defs','spd','eva','acc','crt_chc','crt_mult']
+        self.b_hp = 91
+        self.b_dmg = 134
+        self.b_defs = 95
+        self.b_spd = 80
+        self.b_eva = 0.1
+        self.b_acc = 1
+        self.b_crt_chc = .1
+        self.b_crt_mult = 1.5
+        # adventure permanent stats
+        self.adv_perm_stats = ['hp_reg','chrg_rstr','chrg_incr','luck']
+        self.b_hp_reg = 1
+        self.b_chrg_rstr = 0
+        self.b_chrg_incr = 0
+        self.b_luck = 0
 
-        # Secondary stats
-        self.secondary_stats = ['charge_restore_rate', 'charge_increment_rate',
-                                'evasion', 'accuracy', 'crit_chance', 'crit_mult']
-        # Increase the maximum number of charge rate per skill, unit is percentage. Default is 1
-        # i.e 0.1 = 10%
-        self.base_charge_increment_rate = charge_increment_rate
-        # Evasion. Unit is percentage. Default is 0. 0.1 = 10%
-        self.base_evasion = evasion
-        # Base accuracy. Unit is percentage. Default is 1. 1 = 100%
-        self.base_accuracy = accuracy
-        # Critical hit chance. Unit is percentage. Default is 0.1, which is 10%
-        self.base_crit_chance = crit_chance
-        # Critical hit damage multipler. Unit is percentage. Default is 1.5, which is damage * 1.5
-        self.base_crit_mult = crit_mult
+        # current_stats, after modification
+        self.hp = 0
+        self.dmg = 0
+        self.defs = 0
+        self.spd = 0
+        self.eva = 0
+        self.acc = 1
+        self.crt_chc = 0
+        self.crt_mult = 0
+        self.hp_reg = 0
+        self.chrg_rstr = 0
+        self.chrg_incr = 0
+        self.luck = 0
 
-        # Actual stats, which is the stats after modification from items and everything
-        self.dmg = dmg
-        self.defense = defense
-        self.hp = hp
-        self.hp_regen = hp_regen
-        self.charge_restore_rate = charge_restore_rate
-        self.charge_increment_rate = charge_increment_rate
-        self.evasion = evasion
-        self.accuracy = accuracy
-        self.crit_chance = crit_chance
-        self.crit_mult = crit_mult
-
-    def update_passive_skill_modifiers(self, skill_tree):
-        # tranverse the tree and get all passives
-        pass
-
-    def update_active_skill_modifier(self, effects):
-        # get effects and update
-        pass
+        # the most important stat of all
+        self.curr_hp = 0
 
     def get_all_stats(self):
         stats = {}
-        for i in (self.primary_stats + self.secondary_stats):
+        for i in (self.combat_perm_stats + self.adv_perm_stats):
             stats.update(i, getattr(self, i))
         return stats
 
-    def get_primary_stats(self):
+    def get_all_combat_stats(self):
         stats = {}
-        for i in self.primary_stats:
+        for i in self.combat_perm_stats:
             stats.update(i, getattr(self, i))
         return stats
 
-    def get_secondary_stats(self):
+    def get_all_adventure_stats(self):
         stats = {}
-        for i in self.secondary_stats:
+        for i in self.adv_perm_stats:
             stats.update(i, getattr(self, i))
         return stats
 
@@ -77,45 +80,66 @@ class Stats:
         return getattr(self, name)
 
     def list_stats(self):
-        print(self.primary_stats + self.secondary_stats)
+        print (self.combat_perm_stats + self.adv_perm_stats)
 
-    def list_primary_stats(self):
-        print(self.primary_stats)
 
-    def list_secondary_stats(self):
-        print(self.secondary_stats)
-
-    def print_primary_stats(self):
-        print_text_fancily("Showing Primary Stats ...")
-        for i in self.primary_stats:
+    def print_combat_stats(self):
+        print_text_fancily("Showing Combat Stats ...")
+        for i in self.combat_perm_stats:
             s = (' - %s = %d' % (i, getattr(self, i)))
             print_text_fancily(s, 0.02, False)
 
-    def print_secondary_stats(self):
+    def print_adventure_stats(self):
         print_text_fancily("Showing Secondary Stat ...")
-        for i in self.secondary_stats:
+        for i in self.adv_perm_stats:
             s = (' - %s = %d' % (i, getattr(self, i)))
             print_text_fancily(s, 0.02, False)
 
     def print_all_stats(self):
-        print_text_fancily("Showing Stats ...")
-        for i in (self.primary_stats + self.secondary_stats):
-            s = (' - %s = %d' % (i, getattr(self, i)))
-            print_text_fancily(s, 0.02, False)
-
-    def update_stats_of_owner(self):
-        """
-        Update the stats of the owner. 
-        Assumption is that the owner only gain stats from 
-        predetermined sources such as items and skills
-        """
-        # Get all equipments first
-        items = self.owner.equipments
-        # Get all passive skill next
-        
+        print_title_fancily(None,"Character Stats")
+        print()
+        print_text_fancily(" Combat stats")
+        for i in (self.combat_perm_stats):
+            s = ("     - %-10s : %d" % (i.upper(), getattr(self, i)))
+            print_text_fancily(s,0.01,False)
+        print()
+        print_text_fancily(" Adventure stats")
+        for i in (self.adv_perm_stats):
+            s = ('     - %-10s : %d' % (i.upper(), getattr(self, i)))
+            print_text_fancily(s,0.01,False)
 
 
-    def update_stats_passive_skill(self,skill):
+    def calculate_stats(self):
+        # get all stats modifiers
+        skill_stats_modifiers = self.character.skill_tree.get_stat_modifiers()
+        item_stats_modifiers = self.character.equipments.get_stat_modifiers()
+        self.hp = self.b_hp
+        self.dmg = self.b_dmg
+        self.defs = self.b_defs
+        self.acc  = self.b_acc
+        self.eva = self.b_eva
+        self.crt_chc = self.b_crt_chc
+        self.crt_mult = self.b_crt_mult
+        self.hp_reg = self.b_hp_reg
+        self.chrg_incr = self.b_chrg_incr
+        self.chrg_rstr = self.b_chrg_rstr
+        self.luck = self.b_luck
+        for stat in (skill_stats_modifiers + item_stats_modifiers):
+            base_stat = getattr(self,"b_"+stat[0])
+            modify_value = calc_mod_value(base_stat, stat[1])
+            curr_stat = getattr(self,stat[0])
+            curr_stat = curr_stat + modify_value
+            setattr(self,stat[0],curr_stat)
 
-    def update_stats(self, effects):
-        setattr(self, stat_type, value)
+
+# class TestStats(unittest.TestCase):
+#     def setUp(self):
+#         self.stat = Stats()
+#         self.stat.print_all_stats()
+
+
+
+
+
+
+
