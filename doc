@@ -1,0 +1,8 @@
+
+
+TreeSoul: The soul of the tree, which decides the base stat and everything else. 
+Fruit: Active skill, usage requires charge
+Flower: Passive skill, activiates under certain conditions
+Leaf: a form of simple passive effect that buffs a specific stat.
+
+Each stat has the following format (stat,value,value_increment_per_level)

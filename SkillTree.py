@@ -4,6 +4,7 @@ from pptree import print_tree
 class SkillTree:
     def __init__(self, head):
         self.head = head
+        self.sunshine = 0
 
     def get_all_skills(self):
         if not self.head.is_empty_node() and self.head.children == []:
