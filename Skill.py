@@ -21,7 +21,7 @@ class AdvFruit(Fruit):
 
 class CbtFruit(Fruit):
     def __init__(self, name, b_chrg, acc, dmg, sp_effs, desc):
-        super().__init__(name,b_chrg,chrg, acc,dmg,sp_effs,desc)
+        super().__init__(name,b_chrg,acc,dmg,sp_effs,desc)
 
        
 class Flower(Skill):
@@ -37,12 +37,13 @@ class AdvFlower(Flower):
 
 class CbtFlower(Flower):
     def __init__(self, name, stat_effs, sp_effs, desc):
-        super().__init__(stat_effs,sp_effs,desc)
+        super().__init__(name,stat_effs,sp_effs,desc)
 
-class Leaf:
-    def __init__(self, name, stat_effs):
+class Leaf(Skill):
+    def __init__(self, name, stat_effs,desc = None):
         self.name = name
         self.stat_effs = stat_effs
+        self.desc = desc
 
 class TreeSoul(Skill):
     def __init__(self, name, description=""):

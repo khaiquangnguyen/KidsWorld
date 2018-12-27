@@ -4,8 +4,8 @@
 # ------ IMPORT ----------
 from helpers import print_text_fancily, clear_screen, print_title_fancily
 from Player import Player
-from skills import Math_Tree
 from shapes import WORLD_MAP
+from skills import MathTree
 import time
 import  unittest
 

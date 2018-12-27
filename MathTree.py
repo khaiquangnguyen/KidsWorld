@@ -24,11 +24,11 @@ MentalMath = CbtFlower("Mental Math", None,"MentalMath","Your ability to quickly
 Imagination = CbtFlower("Imagination",("crt_chc",0.1),"Imagination","Imagination helps you doing unimaginable things in math!")
 Limit = CbtFruit("Limit",20,1,40,"Limit","Overwhelm the opponent with a difficult limit problem, dealing psy damage.")
 Focus = CbtFruit("Focus",20,-1,-1,"Focus","Focus helps you do your math better!")
-Leaf_1 = Leaf("Dmg Booster",("dmg",4,2))
-Leaf_2 = Leaf("Spd Booster",("spd",2,2))
-Leaf_3 = Leaf("Defs Booster",("defs",1,0.5))
-Leaf_4 = Leaf("Critical Chance Booster",("crt_chc",0,0.01))
-Leaf_5 = Leaf("Critical Multiplier Booster",("crt_mult",0.5,0.1))
+Leaf_1 = Leaf("Dmg Booster",("dmg",4,2),"Boost Damage")
+Leaf_2 = Leaf("Spd Booster",("spd",2,2),"Boost Speed")
+Leaf_3 = Leaf("Defs Booster",("defs",1,0.5),"Boost Defense")
+Leaf_4 = Leaf("Critical Chance Booster",("crt_chc",0,0.01),"Boost Critical Damage Chance")
+Leaf_5 = Leaf("Critical Multiplier Booster",("crt_mult",0.5,0.1),"Boost Critical Multiplier")
 
 
 Geometry = TreeSoul("Geometry","Geometry is one the oldest form of mathematics.")
@@ -61,3 +61,6 @@ flower_1 = SkillTreeNode(MentalMath,root)
 flower_2 = SkillTreeNode(Imagination,root)
 fruit_1 = SkillTreeNode(Limit,root)
 fruit_2 = SkillTreeNode(Focus,root)
+
+MathTree = SkillTree(root)
+MathTree.show()

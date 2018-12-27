@@ -57,6 +57,5 @@ class SkillTreeNode:
         if self.is_empty_node():
             return "[      ]"
         else:
-            return_string = '{}  [{}]: {}'.format(
-                self.skill.type.upper(), self.skill.name, self.skill.description)
+            return_string = '[{}]: {}'.format(self.skill.name, self.skill.desc)
             return return_string
