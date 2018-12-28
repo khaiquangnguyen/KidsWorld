@@ -1,7 +1,7 @@
 from helpers import print_title_fancily
 from shapes import MATH_PARADISE_ISLAND
 from Item import *
-islands = ["MathParadise", "HistoryField"]
+islands = ["MathParadise"]
 
 
 class Island:
@@ -18,6 +18,7 @@ class Island:
         for building in self.buildings:
             building
 
+
 class Building:
     def __init__(self, type, parent_island):
         self.type = type
@@ -31,7 +32,6 @@ class Marketplace(Building):
 
     def get_all_vendors(self):
         return self.vendors
-    
 
 
 class Mapmaker(Building):
@@ -54,9 +54,8 @@ class Map:
 
 class Vendor:
     def __init__(self, name, items=[]):
-        self.name  = name
+        self.name = name
         self.items = items
-
 
     def add_item(self, item):
         self.items.append(item)

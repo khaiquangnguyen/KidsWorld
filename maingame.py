@@ -3,11 +3,12 @@
 
 # ------ IMPORT ----------
 from helpers import print_text_fancily, clear_screen, print_title_fancily
-from Player import Player
+from player import Player
 from shapes import WORLD_MAP
-from skills import MathTree
+from MathTree import *
 import time
-import  unittest
+from Island import islands
+import unittest
 
 # ------ GLOBAL VARS -------
 
@@ -37,6 +38,7 @@ def create_main_menu():
     else:  # default ##
         print("Invalid number. Try again...")
 
+
 def start_game():
     # clear the screen for a better UI
     clear_screen()
@@ -48,7 +50,7 @@ def start_game():
 
 def get_player_name():
     clear_screen()
-    print_title_fancily(None,"name selection")
+    print_title_fancily(None, "name selection")
     print_text_fancily(" - Hey adventurer, what is your name? ")
     player_name = input(" + My name is [Type in your name here]: ")
     print()
@@ -57,11 +59,13 @@ def get_player_name():
     print_text_fancily(" - Nice to meet you, %s! " % player_name)
     time.sleep(0.5)
     clear_screen()
-    print_text_fancily(" - Every knight needs a shiny armor. Please accept it ...")
+    print_text_fancily(
+        " - Every knight needs a shiny armor. Please accept it ...")
     player.draw_player_avatar()
     time.sleep(1)
     print_text_fancily(" __ Press any key to accept the armor __ ")
     input()
+
 
 def player_select_skill_tree():
     global player
@@ -71,7 +75,7 @@ def player_select_skill_tree():
         ' - Now, your journey cannot begin without some skills.')
     print_text_fancily(' - Which skill tree do you want?')
     time.sleep(1)
-    skill_tree = Math_Tree
+    skill_tree = MathTree
     skill_tree.show()
     print(30 * '-', "\n")
     print("1. Select Math Tree")
@@ -89,15 +93,15 @@ def player_select_skill_tree():
 
 def show_character_confirmation():
     clear_screen()
-    print_title_fancily("final check")
+    print_title_fancily(None, "final check")
     print_text_fancily(
         "- Now, let's check your character again before we start our journey...")
     global player
-    input('Press any key to show the avatar of the player ...')
+    input('Press any key to show the avatar of the player ... \n')
     player.draw_player_avatar()
-    input('Press any key to show the skill tree ...')
+    input('Press any key to show the skill tree ... \n')
     player.draw_player_skill_tree()
-    input('Press any key to show the stats of the character ...')
+    input('Press any key to show the stats of the character ... \n')
     player.show_player_stats()
     time.sleep(1)
     print_text_fancily(" - Everything seems fine! Let the journey begins!")
@@ -107,16 +111,22 @@ def show_character_confirmation():
 
 def begin_journey():
     clear_screen()
-    print_title_fancily("world map")
+    print_title_fancily("KnowLand")
     shape_by_line = WORLD_MAP.split('\n')
     for a_line in shape_by_line:
         print(a_line)
         time.sleep(0.05)
     time.sleep(0.5)
-    print_text_fancily("- Now, let's select a place to explore... \n")
+    print_text_fancily(
+        "- Welcome to KnowLand, adventurer. Where do you want to go? \n")
+    print(30 * '-')
+    print("   D E S T I N A T I O N ")
+    print(30 * '-')
     for i in range(len(islands)):
         print(f'{(i+1):d}. Go to {islands[i]}')
-    choice = input('Enter your choice [1-{}] : '.format(len(islands)))
+    print(30 * '-')
+
+    choice = input('Enter your choice [{}] : '.format(len(islands)))
     ### Convert string to int type ##
     choice = islands[int(choice) - 1]
     explore_island(choice)
@@ -138,12 +148,14 @@ def exit_game():
 
 def create_test_char():
     global player
-    skill_tree = Math_Tree
+    skill_tree = MathTree
     player = Player("khai")
     player.skill_tree = skill_tree
 
+
 if __name__ == "__main__":
-    create_main_menu()
-    # create_test_char()
+    # create_main_menu()
+    create_test_char()
     # show_character_confirmation()
-    # begin_journey()
+    begin_journey()
+    pass

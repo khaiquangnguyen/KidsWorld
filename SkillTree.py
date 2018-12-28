@@ -1,6 +1,7 @@
 from helpers import print_title_fancily
 from pptree import print_tree
 
+
 class SkillTree:
     def __init__(self, head):
         self.head = head
@@ -57,5 +58,5 @@ class SkillTreeNode:
         if self.is_empty_node():
             return "[      ]"
         else:
-            return_string = '[{}]: {}'.format(self.skill.name, self.skill.desc)
+            return_string = '[{}] {}'.format(self.skill.type, self.skill.name)
             return return_string

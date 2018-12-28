@@ -28,7 +28,6 @@ def clear_screen():
     # Works on macs and linux only
     # print('\033[H\033[J')
     os.system('cls')  # For Windows
-    os.system('clear')
 
 
 def print_text_fancily(s, delay=TEXT_DELAY, end_with_newline=True):
@@ -66,28 +65,28 @@ def print_title_fancily(title=None, subtitle=None):
         print(f'  #--- {new_s2}---#')
         print("-" * 30)
 
+
 def calc_mod_value(number, math_string):
     if math_string[-1] != "%":
         return eval(math_string)
     else:
         return eval(math_string[0] + str(number * eval(math_string[1:-1])/100))
 
+
 class TestHelper(unittest.TestCase):
     def test_pure_value(self):
-        self.assertEquals(-10,calc_mod_value(5,"-10"))
-        self.assertEquals(10,calc_mod_value(10,"10"))
-        self.assertEquals(10,calc_mod_value(100,"10"))
+        self.assertEquals(-10, calc_mod_value(5, "-10"))
+        self.assertEquals(10, calc_mod_value(10, "10"))
+        self.assertEquals(10, calc_mod_value(100, "10"))
 
     def test_perc_value(self):
-        self.assertEquals(-10,calc_mod_value(100,"-10%"))
-        self.assertEquals(10,calc_mod_value(100,"+10%"))
+        self.assertEquals(-10, calc_mod_value(100, "-10%"))
+        self.assertEquals(10, calc_mod_value(100, "+10%"))
 
     def test_calculation(self):
-        mod_value = calc_mod_value(100,"-10%")
+        mod_value = calc_mod_value(100, "-10%")
         value = 100 + mod_value
-        self.assertEquals(90,value)
+        self.assertEquals(90, value)
         mod_value = calc_mod_value(100, "10%")
         value = 100 + mod_value
         self.assertEquals(110, value)
-
-
