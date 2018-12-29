@@ -3,173 +3,260 @@
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1,
+      shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous">
     <link rel="stylesheet" href="index.css">
-
-    <title>Hello, world!</title>
   </head>
+
+
   <body>
-  <h2> Item </h2>
+    <h2> Item </h2>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  
-  
-  <form>
-    <div class="form-group">
-      <label for="Name"> Item Name</label>
-      <input type="text" class="form-control" id="Name" aria-describedby="emailHelp" placeholder="Item Name">
-    </div>
-    <div class="form-group">
-      <label for="Description">Description</label>
-          <textarea class="form-control" id="Description" placeholder="Description of the item" rows="4"></textarea>
-    </div>
-    <div class="form-group">
-      <label for="Cost">Cost</label>
-      <input type="text" class="form-control" id="Cost" placeholder="Cost">
-    </div>
-    <div class="form-group">
-      <label for="EquipmentSlot">EquipmentSlot</label>
-      <select class="form-control" id="EquipmentSlot">
-        <option>Hand</option>
-        <option>Feet</option>
-        <option>Head</option>
-        <option>Cape</option>
-        <option>Belt</option>
-        <option>Misc</option>
-      </select>
-    </div>
-  
-  <div class="form-group">
-    <label for="Lifetime">Life Time</label>
-    <input type="text" class="form-control" id="Lifetime" placeholder="Life time">
-  </div>
- <div class="form-row">
-    <div class="form-group col-md-4">
-      <label for="Stat">Stat 1</label>
-       <select class="form-control" id="Stat1">
-      <option>damage</option>
-      <option>defense</option>
-      <option>speed</option>
-      <option>evasion</option>
-      <option>accuracy</option>
-      <option>crit chance</option>
-      <option>crit multiplier</option>
-      <option>hp regen</option>
-      <option>charge restore</option>
-      <option>charge increment</option>
-      <option>luck</option>
-    </select>
-    </div>
-    <div class="form-group col-md-8">
-      <label for="Value">Value</label>
-      <input type="text" class="form-control" id="Value1" placeholder="Value (raw number. If want *1.5, then write 150%)">
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-4">
-      <label for="Stat">Stat 2</label>
-       <select class="form-control" id="Stat2">
-      <option>None</option>
-      <option>damage</option>
-      <option>defense</option>
-      <option>speed</option>
-      <option>evasion</option>
-      <option>accuracy</option>
-      <option>crit chance</option>
-      <option>crit multiplier</option>
-      <option>hp regen</option>
-      <option>charge restore</option>
-      <option>charge increment</option>
-      <option>luck</option>
-    </select>
-    </div>
-    <div class="form-group col-md-8">
-      <label for="Value">Value</label>
-      <input type="text" class="form-control" id="Value2" placeholder="Value (raw number. If want *1.5, then write 150%)">
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-4">
-      <label for="Stat">Stat 3</label>
-       <select class="form-control" id="Stat3">
-      <option>None</option>
-      <option>damage</option>
-      <option>defense</option>
-      <option>speed</option>
-      <option>evasion</option>
-      <option>accuracy</option>
-      <option>crit chance</option>
-      <option>crit multiplier</option>
-      <option>hp regen</option>
-      <option>charge restore</option>
-      <option>charge increment</option>
-      <option>luck</option>
-    </select>
-    </div>
-    <div class="form-group col-md-8">
-      <label for="Value">Value</label>
-      <input type="text" class="form-control" id="Value" placeholder="Value (raw number. If want *1.5, then write 150%)">
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-4">
-      <label for="Stat">Stat 4</label>
-       <select class="form-control" id="Stat">
-            <option>None</option>
+    <!-- Latest compiled and minified CSS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
 
-      <option>damage</option>
-      <option>defense</option>
-      <option>speed</option>
-      <option>evasion</option>
-      <option>accuracy</option>
-      <option>crit chance</option>
-      <option>crit multiplier</option>
-      <option>hp regen</option>
-      <option>charge restore</option>
-      <option>charge increment</option>
-      <option>luck</option>
-    </select>
-    </div>
-    <div class="form-group col-md-8">
-      <label for="Value">Value</label>
-      <input type="text" class="form-control" id="Value" placeholder="Value (raw number. If want *1.5, then write 150%)">
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-4">
-      <label for="Stat">Stat 5</label>
-       <select class="form-control" id="Stat">
-            <option>None</option>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
+    <script src="index.js"></script>
 
-      <option>damage</option>
-      <option>defense</option>
-      <option>speed</option>
-      <option>evasion</option>
-      <option>accuracy</option>
-      <option>crit chance</option>
-      <option>crit multiplier</option>
-      <option>hp regen</option>
-      <option>charge restore</option>
-      <option>charge increment</option>
-      <option>luck</option>
-    </select>
+    <div class="col-12">
+      <table class="table table-hover table-bordered" id="item_list">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col" style="width: 3%">#</th>
+            <th scope="col" style="width: 5%">Name</th>
+            <th scope="col" style="width: 5%">Slot</th>
+            <th scope="col" style="width: 5%">Cost</th>
+            <th scope="col" style="width: 5%">Lifetime</th>
+            <th scope="col" style="width: 10%">Stat Effect</th>
+            <th scope="col" style="width: 20%">Special Effect</th>
+            <th scope="col" style="width: 45%">Description</th>
+            <th scope="col" style="width: 5%">Edit</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
     </div>
-    <div class="form-group col-md-8">
-      <label for="Value">Value</label>
-      <input type="text" class="form-control" id="Value" placeholder="Value (raw number. If want *1.5, then write 150%)">
+
+    <button type="button" class="btn btn-primary" data-toggle="modal"
+      data-target="#create_item"> Create Item</button>
+
+    <div id="create_item" class="modal fade" tabindex="-1" role="dialog"
+      aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Create new item</h5>
+            <button type="button" class="close" data-dismiss="modal"
+              aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <form action="#" id="create_item_form" onsubmit="create_item();
+              return false">
+              <div class="form-row">
+                <div class="col-md-6 mb-0">
+                  <label for="Name"> Item Name</label>
+                  <input type="text" class="form-control" id="Name">
+                </div>
+                <div class="col-md-2 mb-0">
+                  <label for="Cost">Cost</label>
+                  <input type="text" class="form-control" id="Cost">
+                </div>
+                <div class="col-md-2 mb-0">
+                  <label for="EquipmentSlot">Slot</label>
+                  <select class="form-control" id="EquipmentSlot">
+                    <option>Hand</option>
+                    <option>Feet</option>
+                    <option>Head</option>
+                    <option>Cape</option>
+                    <option>Belt</option>
+                    <option>Misc</option>
+                  </select>
+                </div>
+                <div class="col-md-2 mb-0">
+                  <label for="Lifetime">Life Time</label>
+                  <input type="text" class="form-control" id="Lifetime">
+                </div>
+
+              </div>
+              <div class="form-group">
+                <label for="Description">Description</label>
+                <textarea class="form-control" id="Description" rows="3"></textarea>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label for="Stat1">Stat 1</label>
+                  <select class="form-control" id="Stat1">
+                    <option>None</option>
+                    <option>damage</option>
+                    <option>defense</option>
+                    <option>speed</option>
+                    <option>evasion</option>
+                    <option>accuracy</option>
+                    <option>crit chance</option>
+                    <option>crit multiplier</option>
+                    <option>hp regen</option>
+                    <option>charge restore</option>
+                    <option>charge increment</option>
+                    <option>luck</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-8">
+                  <label for="Value1">Value</label>
+                  <input type="text" class="form-control" id="Value1">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label for="Stat2">Stat 2</label>
+                  <select class="form-control" id="Stat2">
+                    <option>None</option>
+                    <option>damage</option>
+                    <option>defense</option>
+                    <option>speed</option>
+                    <option>evasion</option>
+                    <option>accuracy</option>
+                    <option>crit chance</option>
+                    <option>crit multiplier</option>
+                    <option>hp regen</option>
+                    <option>charge restore</option>
+                    <option>charge increment</option>
+                    <option>luck</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-8">
+                  <label for="Value2">Value</label>
+                  <input type="text" class="form-control" id="Value2">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label for="Stat3">Stat 3</label>
+                  <select class="form-control" id="Stat3">
+                    <option>None</option>
+                    <option>damage</option>
+                    <option>defense</option>
+                    <option>speed</option>
+                    <option>evasion</option>
+                    <option>accuracy</option>
+                    <option>crit chance</option>
+                    <option>crit multiplier</option>
+                    <option>hp regen</option>
+                    <option>charge restore</option>
+                    <option>charge increment</option>
+                    <option>luck</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-8">
+                  <label for="Value3">Value</label>
+                  <input type="text" class="form-control" id="Value3">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label for="Stat4">Stat 4</label>
+                  <select class="form-control" id="Stat4">
+                    <option>None</option>
+                    <option>damage</option>
+                    <option>defense</option>
+                    <option>speed</option>
+                    <option>evasion</option>
+                    <option>accuracy</option>
+                    <option>crit chance</option>
+                    <option>crit multiplier</option>
+                    <option>hp regen</option>
+                    <option>charge restore</option>
+                    <option>charge increment</option>
+                    <option>luck</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-8">
+                  <label for="Value4">Value</label>
+                  <input type="text" class="form-control" id="Value4">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label for="Stat5">Stat 5</label>
+                  <select class="form-control" id="Stat5">
+                    <option>None</option>
+                    <option>damage</option>
+                    <option>defense</option>
+                    <option>speed</option>
+                    <option>evasion</option>
+                    <option>accuracy</option>
+                    <option>crit chance</option>
+                    <option>crit multiplier</option>
+                    <option>hp regen</option>
+                    <option>charge restore</option>
+                    <option>charge increment</option>
+                    <option>luck</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-8">
+                  <label for="Value5">Value</label>
+                  <input type="text" class="form-control" id="Value5">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="SpecialEffect">Special Effect</label>
+                <textarea class="form-control" id="SpecialEffect" rows="3"></textarea>
+              </div>
+            </form>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" id="submit_button"
+                data-dismiss="modal">Create Item</button>
+              <button type="button" class="btn btn-secondary"
+                data-dismiss="modal">Close</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="SpecialEffect">Special Effect</label>
-    <textarea class="form-control" id="SpecialEffect" placeholder="Special Effect (Write the description of the effect here)" rows="4"></textarea>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+
+    <!--  -->
+    <!--  -->
+    <div id="success_inform" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Success</h5>
+            <button type="button" class="close" data-dismiss="modal"
+              aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>The item has been successfully created.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary"
+              data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

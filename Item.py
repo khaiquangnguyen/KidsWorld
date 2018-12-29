@@ -38,22 +38,22 @@ class ConsummableItem(Item):
 
 # ------------ ITEM LIST ------------- #
 
-Pencil = EquipItem("pencil", "hands", "the basic tool of students",
-                   "1", [("dmg", 1)])
+# Pencil = EquipItem("pencil", "hands", "the basic tool of students",
+#                    "1", [("dmg", 1)])
 
-Notebook = EquipItem("notebook", "hands", "The basic tool of students",
-                     "1", [("defs", 1)])
+# Notebook = EquipItem("notebook", "hands", "The basic tool of students",
+#                      "1", [("defs", 1)])
 
-Eraser = EquipItem("eraser", "hands", "The basic tool of students",
-                   "1", [("dmg", 1.5)])
+# Eraser = EquipItem("eraser", "hands", "The basic tool of students",
+#                    "1", [("dmg", 1.5)])
 
-Laptop = EquipItem("laptop", "accesories", "The advanced productivity tool of students", "1",
-                   [("dmg", "130%"),
-                    ("crit_mult", 0.5),
-                       ("crt_chc", 0.2)])
+# Laptop = EquipItem("laptop", "accesories", "The advanced productivity tool of students", "1",
+#                    [("dmg", "130%"),
+#                     ("crit_mult", 0.5),
+#                        ("crt_chc", 0.2)])
 
-Calculator = EquipItem("calculator", "accesories",
-                       "The best friend of math students", "1", [("dmg", "110%")])
+# Calculator = EquipItem("calculator", "accesories",
+#                        "The best friend of math students", "1", [("dmg", "110%")])
 
-RunningShoes = EquipItem("running shoes", "foot", "Everyone needs a pair of running shoes", "1",
-                         [("hp", 2)])
+# RunningShoes = EquipItem("running shoes", "foot", "Everyone needs a pair of running shoes", "1",
+#                          [("hp", 2)])
