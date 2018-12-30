@@ -158,8 +158,6 @@ function create_item() {
             console.log("Success", data);
             $('#success_inform').modal();
             docClient.scan(item_params, onScan);
-
-
         }
     });
 }
