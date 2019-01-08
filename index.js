@@ -62,16 +62,17 @@ function onScan(err, data) {
             var stats = `<td>${stats}</td>`;
             var special_effects = `<td>${item.special}</td>`;
             var description = `<td>${item.description}</td>`;
-            var button = `<td><button type="button" class="btn btn-primary" id = "${item.name}">edit</button></td>`
+            var name_without_space = item.name.replace(/\s+/g, '');
+
+            var button = `<td><button type="button" class="btn btn-primary" id = "${name_without_space}">edit</button></td>`
 
             var $a = $("<tr/>") // creates a div element
-                .attr("id", item.name) // adds the id
+                .attr("id", name_without_space) // adds the id
                 .html(range + name + slot + cost + lifetime + stats + special_effects + description + button);
             $("#item_list").append($a);
             count++;
-            $(".btn#" + item.name).click(function () {
+            $("#" + name_without_space).click(function () {
                 $('#create_item').modal();
-                console.log(item.stat3);
                 $('#create_item').find('form #Name').val(item.name);
                 $('#create_item').find('form #Cost').val(item.cost);
                 $('#create_item').find('form #EquipmentSlot').val(item.slot);
