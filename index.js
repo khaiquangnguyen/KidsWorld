@@ -71,7 +71,7 @@ function onScan(err, data) {
                 .html(range + name + slot + cost + lifetime + stats + special_effects + description + button);
             $("#item_list").append($a);
             count++;
-            $("#" + name_without_space).click(function () {
+            $(".btn#" + name_without_space).click(function () {
                 $('#create_item').modal();
                 $('#create_item').find('form #Name').val(item.name);
                 $('#create_item').find('form #Cost').val(item.cost);
