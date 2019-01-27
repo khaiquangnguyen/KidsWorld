@@ -163,7 +163,6 @@ function create_item() {
     });
 }
 
-
 $(document).ready(function () {
     $("#submit_button").click(function () {
         $("#create_item_form").submit();

@@ -73,4 +73,4 @@ def create_math_island():
     return MathParadise
 
 
-MathParadise = create_math_island()
+# MathParadise = create_math_island()
