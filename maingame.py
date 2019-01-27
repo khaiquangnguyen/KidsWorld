@@ -154,8 +154,8 @@ def create_test_char():
 
 
 if __name__ == "__main__":
-    # create_main_menu()
-    create_test_char()
+    create_main_menu()
+    # create_test_char()
     # show_character_confirmation()
-    begin_journey()
+    # begin_journey()
     pass
